@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:4.4
+    ports:
+      - '27017:27017'  # Map port 27017 in the container to port 28017 on the host
+    volumes:
+      - mongo-data:/data/db  # Use a named volume for MongoDB data
+#    healthcheck:
+#      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+  backend:
+    build:
+      context: ./packages/backend  # Context for building the Docker image
+      dockerfile: Dockerfile  # Optional: specify the Dockerfile if it's not named 'Dockerfile'
+    ports:
+      - '6383:6383'  # Map port 6383 on the host to port 3000 in the container. (usage: [container_port]:[host_port])
+    volumes:
+      - ./packages/backend:/usr/src/api  # Mount the backend source code into the container
+      - /usr/src/api/node_modules
+      - /usr/src/api/dist
+    env_file:
+      - packages/backend/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=6383
+      - ADDRESS=0.0.0.0
+    depends_on:
+      - mongo  # Ensure 'mongodb' starts before 'backend'
+
+  frontend:
+    build:
+      context: ./packages/frontend  # Context for building the Docker image
+      dockerfile: Dockerfile  # Optional: specify the Dockerfile if it's not named 'Dockerfile'
+    ports:
+      - '3000:3000'  # Map port 80 on the host to port 3000 in the container. (usage: [container_port]:[host_port])
+    volumes:
+      - ./packages/frontend:/usr/src/app  # Mount the frontend source code into the container
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    env_file: ./packages/frontend/.env
+    depends_on:
+      - backend  # Ensure 'backend' starts before 'frontend'
+
+volumes:
+  mongo-data:

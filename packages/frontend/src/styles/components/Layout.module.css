@@ -1,0 +1,45 @@
+/* Style cho container chính */
+.main-container {
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style cho header */
+.header {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/* Style cho footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Style cho nội dung chính */
+.content {
+    flex: 1;
+    padding: 2rem 0;
+}

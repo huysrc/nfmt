@@ -1,0 +1,63 @@
+/* Style cho thanh điều hướng */
+.nav {
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav ul li {
+    margin: 0.5rem 0;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Các style bổ sung cho bảng điều khiển quản trị */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.admin-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.admin-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+}
+
+.admin-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.admin-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
